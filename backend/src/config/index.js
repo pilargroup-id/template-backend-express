@@ -1,4 +1,14 @@
-require('dotenv').config();
+const path = require('path');
+const dotenv = require('dotenv');
+
+const envFile =
+  process.env.NODE_ENV === 'production'
+    ? '.env'
+    : '.env.local';
+
+dotenv.config({
+  path: path.resolve(process.cwd(), envFile),
+});
 
 function required(name) {
   const value = process.env[name];
